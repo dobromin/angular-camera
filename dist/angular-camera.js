@@ -26,8 +26,8 @@
           navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
           window.URL = window.URL || window.webkitURL || window.mozURL || window.msURL;
           scope.$on('$destroy', function () {
-            if (scope.stream && typeof scope.stream.stop === 'function') {
-              scope.stream.stop();
+            if (scope.stream && scope.stream.getTracks()[0] != null) {
+              scope.stream.getTracks()[0].stop();
             }
           });
           scope.enableCamera = function () {
